@@ -1,4 +1,14 @@
 <% include layout %>
 <body>
-<button onclick="window.location.href='/upload'" class="btn btn-primary">NEW POST</button>
+<div class="container">
+	<div class="item">
+		<button onclick="window.location.href='/upload'" class="btn btn-primary">NEW POST</button>
+	</div>
+	<% posts.forEach(function(post){%>
+		<div class="item w2">
+			<p>post.name</p><br>
+			<img src="<%=post.link%>" height="100px" width="100px">
+		</div>
+	<%}) %>
+</div>
 </body>

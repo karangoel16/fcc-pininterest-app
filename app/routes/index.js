@@ -24,7 +24,7 @@ module.exports = function (app, passport) {
 					console.log(err);
 					res.send();
 				}
-				res.render('index',{login:req.isAuthenticated(),post:post});
+				res.render('index',{login:req.isAuthenticated(),posts:post});
 			});
 		});
 
