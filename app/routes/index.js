@@ -54,8 +54,15 @@ module.exports = function (app, passport) {
 					console.log(err);
 				}
 				console.log("success");
+				res.redirect('/');
 			});
 		});
+
+	app.route('/myPost')
+		.get(isLoggedIn,function(req,res){
+			res.render('mypost',{login:req.isAuthenticated()});
+		});
+
 	app.route('/api/:id')
 		.get(isLoggedIn, function (req, res) {
 			res.json(req.user.github);
