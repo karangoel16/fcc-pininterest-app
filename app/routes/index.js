@@ -18,7 +18,14 @@ module.exports = function (app, passport) {
 	app.route('/')
 		.get(function (req, res) {
 			//res.sendFile(path + '/public/index.html');
-			res.render('index',{login:req.isAuthenticated()});
+			Post.find({},function(err,post){
+				if(err)
+				{
+					console.log(err);
+					res.send();
+				}
+				res.render('index',{login:req.isAuthenticated(),post:post});
+			});
 		});
 
 	app.route('/login')
@@ -60,7 +67,15 @@ module.exports = function (app, passport) {
 
 	app.route('/myPost')
 		.get(isLoggedIn,function(req,res){
-			res.render('mypost',{login:req.isAuthenticated()});
+			Post.find({users:req.user._id},function(err,post){
+				if(err)
+				{
+					console.log(err);
+					return;
+				}
+				console.log(post);
+				res.render('mypost',{login:req.isAuthenticated(),post:post});
+			});
 		});
 
 	app.route('/api/:id')
