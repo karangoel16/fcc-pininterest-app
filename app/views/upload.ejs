@@ -1,0 +1,19 @@
+<%include layout%>
+<script>
+$(document).ready(function(){
+	$('#image').change(function(){
+		var d = new Date();
+		$('#image_val').attr("src",$('#image').val());
+	});
+});
+</script>
+<body>
+	<div class="jumbotron">
+		<form method="post" action="/upload">
+			<input type="text" name="title" class="input-lg"><br>
+			<image width="100px" height="100px" id="image_val" ><br>
+			<input type="text" name="link" placeholder="Image Link" class="input-lg" id="image"><br>
+			<input class="input-lg" type="submit">
+		</form>
+	</div>
+</body>
