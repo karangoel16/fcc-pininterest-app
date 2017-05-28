@@ -20,17 +20,22 @@ function but(id){
 		}
 	});
 }
-function delete(id){
+
+function del(id){
 	var choice=confirm("Do you want to delete it");
 	console.log(choice);
-	$.ajax({
-		type:"POST",
-		url:"/deletePost",
-		data:{
-			id:id
-		},
-		success:function(){
-			var d=$('#likes'+id);
-		},
-	})
+	if(choice)
+	{
+		$.ajax({
+			type:"POST",
+			url:"/deletePost",
+			data:{
+				id:id
+			},
+			success:function(){
+				var d=$('#div'+id);
+				d.css({"display":"none"});
+			},
+		});
+	}
 }

@@ -52,7 +52,9 @@ module.exports = function (app, passport) {
 			var post=new Post({
 				link:req.body.link,
 				name:req.body.title,
-				users:req.user._id
+				users:{
+					id:req.user._id,
+					name:req.user.displayName}
 			});
 			post.save(function(err){
 				if(err)
@@ -66,13 +68,17 @@ module.exports = function (app, passport) {
 
 	app.route('/myPost')
 		.get(isLoggedIn,function(req,res){
-			Post.find({users:req.user._id},function(err,post){
+			var query={
+				id:req.user._id,
+				name:req.user.displayName
+			}
+			Post.find({users:query},function(err,post){
+				console.log(post);
 				if(err)
 				{
 					console.log(err);
 					return;
 				}
-				console.log(post);
 				res.render('mypost',{login:req.isAuthenticated(),posts:post});
 			});
 		});
@@ -91,13 +97,28 @@ module.exports = function (app, passport) {
 
 	app.route('/deletePost')
 		.post(isLoggedIn,function(req,res){
-			Post.findById(req.body.id,function(err,post){
+			var query={
+				id:req.user._id,
+				name:req.user.displayName
+			};
+			//console.log(req.body.id);
+			Post.findOne({_id:req.body.id,users:query},function(err,post){
 				if(err){
 					console.log(err);
 					return;
 				}
-				console.log("delete success");
-			})
+				//console.log(post);
+				post.remove(function(err)
+				{
+					if(err)
+					{
+						console.log(err);
+						return;
+					}
+					console.log("delete success");
+					res.json({success : "Updated Successfully", status : 200});
+				});
+			});
 		});	
 
 	app.route('/api/:id')

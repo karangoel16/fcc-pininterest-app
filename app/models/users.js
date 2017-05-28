@@ -5,14 +5,14 @@ var Schema = mongoose.Schema;
 
 var User = new Schema({
 	service:String,
+	displayName:String,
 	twitter:{
 		id:String,
-		displayName:String,
+		
 		username:String
 	},
 	github: {
 		id: String,
-		displayName: String,
 		username: String,
       		publicRepos: Number
 	},

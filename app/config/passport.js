@@ -32,7 +32,7 @@ module.exports = function (passport) {
 				newUser.service="twitter";
 				newUser.twitter.id = profile.id;
 				newUser.twitter.username = profile.username;
-				newUser.twitter.displayName = profile.displayName;
+				newUser.displayName = profile.displayName;
 				newUser.nbrClicks.clicks = 0;
 				newUser.save(function (err) {
 						if (err) {
@@ -63,7 +63,7 @@ module.exports = function (passport) {
 					newUser.service="github";
 					newUser.github.id = profile.id;
 					newUser.github.username = profile.username;
-					newUser.github.displayName = profile.displayName;
+					newUser.displayName = profile.displayName;
 					newUser.github.publicRepos = profile._json.public_repos;
 					newUser.nbrClicks.clicks = 0;
 

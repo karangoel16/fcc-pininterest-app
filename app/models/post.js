@@ -13,7 +13,10 @@ var post=new Schema({
 		type:String,
 		required:true,
 	},
-	users:{type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+	users:{
+		id:{type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+		name:String,
+	},
 	likes:{
 		type:Number,
 		default:0
