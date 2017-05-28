@@ -74,10 +74,20 @@ module.exports = function (app, passport) {
 					return;
 				}
 				console.log(post);
-				res.render('mypost',{login:req.isAuthenticated(),post:post});
+				res.render('mypost',{login:req.isAuthenticated(),posts:post});
 			});
 		});
-
+	app.route("/updatePost")
+		.post(isLoggedIn,function(req,res){
+			Post.update({_id:req.body.id},{$inc:{likes:1}},function(err,post){
+					if(err)
+					{
+						console.log(err);
+						return ;
+					}
+					res.json({success : "Updated Successfully", status : 200});
+				});
+			});
 	app.route('/api/:id')
 		.get(isLoggedIn, function (req, res) {
 			res.json(req.user.github);

@@ -221,3 +221,7 @@ span {
 #image{
 	border-radius: 5px;
 }
+#like:hover{
+	cursor: pointer;
+	color: blue;
+}
