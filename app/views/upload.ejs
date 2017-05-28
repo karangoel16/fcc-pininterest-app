@@ -11,7 +11,7 @@ $(document).ready(function(){
 	<div class="jumbotron">
 		<form method="post" action="/upload">
 			<input type="text" name="title" class="input-lg"><br>
-			<image width="100px" height="100px" id="image_val" ><br>
+			<image width="100px" height="100px" id="image_val" onerror="imgError(this);"><br>
 			<input type="text" name="link" placeholder="Image Link" class="input-lg" id="image"><br>
 			<input class="input-lg" type="submit">
 		</form>
