@@ -2,7 +2,8 @@
 <body>
 <div class="container">
 	<% posts.forEach(function(post){%>
-		<div class="item w2">
+		<div class="item w2" id="div<%=post._id%>">
+			<span class="glyphicon glyphicon-remove" id="delete" onclick="delete('<%=post._id%>')"></span>
 			<p><%=post.name%></p><br>
 			<img src="<%=post.link%>" height="100px" width="100px">
 			<br>
