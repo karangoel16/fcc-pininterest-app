@@ -1,12 +1,15 @@
 <%include layout %>
 <body>
+<div class="container">
 	<% posts.forEach(function(post){%>
 		<div class="item w2">
 			<p><%=post.name%></p><br>
 			<img src="<%=post.link%>" height="100px" width="100px">
 			<br>
-			<span class="glyphicon glyphicon-heart" id="like" onclick="but()"></span>
+			<div id="likes<%=post._id%>"><%=post.likes%></div>
+			<span class="glyphicon glyphicon-heart" id="like" onclick="but('<%=post._id%>')"></span>
 		</div>
 	<%}) %>
+</div>
 </body>
 </html>

@@ -12,8 +12,11 @@ function but(id){
 			id:id
 		},
 		success:function(){
-			var d='#likes'+id;
-			console.log($(d).val());
+			var d=$('#likes'+id);
+			$(d).html(parseInt($(d).text())+1);
 		},
+		error:function(err){
+			console.log(err)
+		}
 	});
 }

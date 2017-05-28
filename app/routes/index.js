@@ -49,7 +49,6 @@ module.exports = function (app, passport) {
 			res.render('upload',{login:req.isAuthenticated()});
 		})
 		.post(isLoggedIn,function(req,res){
-			console.log(req.user);
 			var post=new Post({
 				link:req.body.link,
 				name:req.body.title,
